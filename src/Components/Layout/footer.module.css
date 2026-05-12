@@ -1,0 +1,23 @@
+.footer {
+  background: aquamarine;
+  color: rgb(10, 10, 10);
+  padding: 40px 20px;
+}
+
+/* SECCIÓN EQUIPO */
+.team {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.team h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* INFO */
+.info {
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.8;
+}

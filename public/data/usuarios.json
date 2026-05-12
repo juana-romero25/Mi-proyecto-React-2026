@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "nombre": "Juana Romero",
+    "puesto": "CEO",
+    "email": "juana@gmail.com",
+    "foto": "/multimedia/avatar1.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "Juana Romero",
+    "puesto": "Diseñadora",
+    "email": "juana@gmail.com",
+    "foto": "/multimedia/avatar2.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "Juana Romero",
+    "puesto": "QA Tester",
+    "email": "juana@gmail.com",
+    "foto": "/multimedia/avatar3.jpg"
+  }
+]

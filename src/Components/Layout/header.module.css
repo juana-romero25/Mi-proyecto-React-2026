@@ -1,0 +1,13 @@
+.header {
+  background-color: aquamarine;
+  padding: 20px;
+  text-align: center;
+}
+
+
+
+@media (max-width: 600px) {
+  .header {
+    font-size: 14px;
+  }
+}

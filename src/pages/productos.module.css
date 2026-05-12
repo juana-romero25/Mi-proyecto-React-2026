@@ -1,0 +1,32 @@
+.container {
+  padding: 30px;
+}
+
+/* TÍTULO */
+.title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 28px;
+}
+
+/* GRID RESPONSIVE */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* LOADING */
+.loading {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 22px;
+}
+
+/* ERROR */
+.error {
+  text-align: center;
+  margin-top: 50px;
+  color: red;
+  font-size: 20px;
+}

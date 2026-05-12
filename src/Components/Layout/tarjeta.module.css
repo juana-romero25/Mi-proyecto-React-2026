@@ -1,0 +1,52 @@
+.card {
+  background: #2f3542;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  color: white;
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.6s forwards;
+}
+
+/* ANIMACIÓN */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* HOVER */
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* IMAGEN */
+.card img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  border: 3px solid #ffa502;
+}
+
+/* TEXTO */
+.card h4 {
+  margin: 5px 0;
+}
+
+.card p {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* EMAIL */
+.email {
+  margin-top: 10px;
+  font-size: 13px;
+  opacity: 0.9;
+}

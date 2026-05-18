@@ -11,7 +11,8 @@ function NavBar() {
         <Link to="/productos">Productos</Link>
         <Link to="/promos">Promos</Link>
         <Link to="/alta">Alta de Productos</Link>
-        <Link to="/Contacto">Contacto</Link>
+        <Link to="/contacto">Contacto</Link>
+        <Link to="/carrito">Carrito</Link>
        
       </div>
      

@@ -6,7 +6,7 @@ function CartWidget() {
 
   return (
     <div>
-      🛒 {totalItems}
+      carrito {totalItems}
     </div>
   );
 }

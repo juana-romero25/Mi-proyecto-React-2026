@@ -4,41 +4,48 @@
     "nombre": "Buzitos perro",
     "precio": 5000,
     "stock": 22,
-    "imagen": "/multimedia/buzitos.jpg"
+    "imagen": "/multimedia/buzitos.jpg",
+    "categoria": "Perro"
+    
   },
   {
     "id": 2,
     "nombre": "Cama mediana Perro",
     "precio": 5000,
     "stock": 22,
-    "imagen": "/multimedia/cama.jpg"
+    "imagen": "/multimedia/cama.jpg",
+     "categoria": "Perro"
   },
   {
     "id": 3,
     "nombre": "Rascador Gato",
     "precio": 5000,
     "stock": 22,
-    "imagen": "/multimedia/rascador-gato.jpg"
+    "imagen": "/multimedia/rascador-gato.jpg",
+    "categoria": "Gato"
   },
   {
     "id": 4,
     "nombre": "Correa para gato",
     "precio": 5000,
     "stock": 22,
-    "imagen": "/multimedia/correas.jpg"
+    "imagen": "/multimedia/correas.jpg",
+    "categoria": "Gato"
   },
   {
     "id": 5,
     "nombre": "Alimento perro",
     "precio": 5000,
     "stock": 22,
-    "imagen": "/multimedia/alimento-perro.jpg"
+    "imagen": "/multimedia/alimento-perro.jpg",
+    "categoria": "Perro"
   },
   {
     "id": 6,
     "nombre": "Alimento gato",
     "precio": 5000,
     "stock": 22,
-    "imagen": "/multimedia/alimento-gato.jpg"
+    "imagen": "/multimedia/alimento-gato.jpg",
+    "categoria": "Gato"
   }
 ]

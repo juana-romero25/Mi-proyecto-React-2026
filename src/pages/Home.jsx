@@ -1,13 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { Truck, CreditCard, ShieldCheck, ChevronLeft, ChevronRight } from "lucide-react";
 import styles from "./home.module.css";
 
 const slides = [
   {
     id: 1,
     imagen: "/multimedia/banner1.webp",
-  
-    
   },
   {
     id: 2,
@@ -71,28 +70,27 @@ function Home() {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {/* SLIDES */}
+      {/* SLIDER */}
       <div
         className={styles.slider}
         style={{ transform: `translateX(-${index * 100}%)` }}
       >
         {slides.map((slide) => (
           <div className={styles.slide} key={slide.id}>
-            <img src={slide.imagen} alt={slide.titulo} />
-
-            <div className={styles.overlay}>
-              <h1>{slide.titulo}</h1>
-              <p>{slide.texto}</p>
-
-             
-            </div>
+            <img src={slide.imagen} alt="banner" />
+            <div className={styles.overlay}></div>
           </div>
         ))}
       </div>
 
       {/* BOTONES */}
-      <button className={styles.prev} onClick={prevSlide}>‹</button>
-      <button className={styles.next} onClick={nextSlide}>›</button>
+      <button className={styles.prev} onClick={prevSlide}>
+        <ChevronLeft size={36} />
+      </button>
+
+      <button className={styles.next} onClick={nextSlide}>
+        <ChevronRight size={36} />
+      </button>
 
       {/* DOTS */}
       <div className={styles.dots}>
@@ -104,6 +102,39 @@ function Home() {
           />
         ))}
       </div>
+
+      {/* BENEFICIOS */}
+      <section className={styles.beneficios}>
+        <div className={styles.item}>
+          <span className={styles.icon}>
+            <Truck size={32} />
+          </span>
+          <div>
+            <h3>Enviamos tu compra</h3>
+            <p>Rápido a todo el país</p>
+          </div>
+        </div>
+
+        <div className={styles.item}>
+          <span className={styles.icon}>
+            <CreditCard size={32} />
+          </span>
+          <div>
+            <h3>Pagá como quieras</h3>
+            <p>Tarjetas de crédito o efectivo</p>
+          </div>
+        </div>
+
+        <div className={styles.item}>
+          <span className={styles.icon}>
+            <ShieldCheck size={32} />
+          </span>
+          <div>
+            <h3>Comprá con seguridad</h3>
+            <p>Tus datos siempre protegidos</p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

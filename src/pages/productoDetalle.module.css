@@ -1,0 +1,125 @@
+/* CONTENEDOR */
+.container {
+  padding: 30px;
+}
+
+/* BOTÓN VOLVER */
+.volver {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  margin-bottom: 20px;
+
+  background: transparent;
+  color: #333;
+
+  cursor: pointer;
+}
+
+/* CARD */
+.card {
+  display: flex;
+  gap: 30px;
+
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* IMAGEN */
+.imgBox {
+  flex: 1;
+  background: #f7f7f7;
+  padding: 15px;
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgBox img {
+  max-height: 350px;
+  object-fit: contain;
+}
+
+/* INFO */
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* CATEGORIA */
+.categoria {
+  color: #666;
+}
+
+/* PRECIO */
+.precio {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* STOCK */
+.stock {
+  color: #444;
+}
+
+/* CANTIDAD */
+.cantidad {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.cantidad button {
+  padding: 5px 10px;
+  background: #ddd;
+  border-radius: 5px;
+}
+
+/* BOTÓN */
+.boton {
+  background: #5b8def;
+  color: white;
+
+  padding: 10px 15px;
+  border-radius: 10px;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+
+  transition: all 0.2s ease;
+}
+
+.boton:hover {
+  transform: scale(1.05);
+}
+
+/* MENSAJE */
+.mensaje {
+  color: green;
+  margin-top: 10px;
+}
+
+/* LOADING */
+.loading {
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+  }
+
+  .imgBox img {
+    max-height: 250px;
+  }
+}

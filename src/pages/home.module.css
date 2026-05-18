@@ -131,6 +131,44 @@
   background: #ffa502;
 }
 
+.beneficios {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  padding: 40px 20px;
+  background: #fff;
+
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+
+  gap: 20px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  text-align: left;
+}
+
+.icon {
+  font-size: 28px;
+}
+
+.item h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.item p {
+  margin: 0;
+  font-size: 13px;
+  color: #666;
+}
+
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .overlay {
@@ -141,5 +179,14 @@
 
   .overlay h1 {
     font-size: 28px;
+  }
+
+  .beneficios {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .item {
+    justify-content: center;
   }
 }

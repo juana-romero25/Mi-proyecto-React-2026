@@ -1,0 +1,9 @@
+.productsGrid {
+  display: grid;
+  /* Crea columnas que se adaptan solas al tamaño de la pantalla (mínimo 250px cada tarjeta) */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px; /* Espaciado elegante entre tarjetas */
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto; /* Centra el catálogo en pantallas grandes */
+}

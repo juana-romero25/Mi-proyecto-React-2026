@@ -16,8 +16,10 @@ function App() {
         <Route path="/productos" element={<Productos />} />
         <Route path="/producto/:id" element={<ProductoDetalle />} />
         <Route path="/carrito" element={<Carrito />} />
+        <Route path="/gestion" element={<Gestion />} />
          <Route path="/alta" element={<FormularioContainer />} />
          <Route path="/contacto" element={<Contacto />} />
+           <Route path="/productosBD" element={<ProductosBD />} />
       </Routes>
     </Layout>
   );

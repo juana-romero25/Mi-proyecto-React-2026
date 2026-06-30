@@ -5,7 +5,7 @@
   overflow: hidden;
 }
 
-/* CONTENEDOR DESLIZANTE */
+
 .slider {
   display: flex;
   width: 100%;
@@ -13,7 +13,7 @@
   transition: transform 0.6s ease-in-out;
 }
 
-/* CADA SLIDE */
+
 .slide {
   min-width: 100%;
   height: 100%;
@@ -26,7 +26,7 @@
   object-fit: cover;
 }
 
-/* OVERLAY CON GRADIENTE PRO */
+
 .overlay {
   position: absolute;
   top: 0;
@@ -34,11 +34,7 @@
   width: 100%;
   height: 100%;
 
- /* background: linear-gradient(
-    to right,
-    rgba(0,0,0,0.6),
-    rgba(0,0,0,0.2)
-  );*/
+
 
   display: flex;
   flex-direction: column;
@@ -49,7 +45,7 @@
   color: white;
 }
 
-/* TEXTO ANIMADO */
+
 .overlay h1 {
   font-size: 45px;
   margin-bottom: 10px;
@@ -73,7 +69,7 @@
   }
 }
 
-/* BOTÓN */
+
 .overlay button {
   padding: 12px 25px;
   border: none;
@@ -89,7 +85,7 @@
   background: #ff7f00;
 }
 
-/* FLECHAS */
+
 .prev,
 .next {
   position: absolute;
@@ -107,7 +103,7 @@
 .prev { left: 20px; }
 .next { right: 20px; }
 
-/* DOTS */
+
 .dots {
   position: absolute;
   bottom: 20px;
@@ -169,7 +165,7 @@
 }
 
 
-/* RESPONSIVE */
+
 @media (max-width: 768px) {
   .overlay {
     padding-left: 20px;

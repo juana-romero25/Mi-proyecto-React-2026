@@ -1,167 +1,257 @@
-/* =========================
-   CARRITO
-========================= */
-
-.carrito {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
-}
-
-.titulo {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 2rem;
+.carritoContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
 }
 
-/* =========================
-   ITEM
-========================= */
+/* Header */
+.headerPage {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.tituloPage {
+  font-size: 2.5rem;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+.breadcrumb {
+  color: #777;
+  font-size: 0.9rem;
+}
 
-.item {
+/* Layout en dos columnas */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 30px;
+  align-items: start;
+}
+.vacioContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  background-color: #ffffff;
+  border: 1px solid #eef0f2;
+  border-radius: 4px;
+  max-width: 600px;
+  margin: 40px auto;
+}
+
+.vacio {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #222222;
+  margin: 0 0 8px 0;
+}
+
+.vacioSecundario {
+  font-size: 0.95rem;
+  color: #666666;
+  margin: 0 0 24px 0;
+}
+
+/* Estilo para el botón de regreso */
+.btnVolver {
+  display: inline-block;
+  padding: 12px 28px;
+  background-color: #222222;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-radius: 2px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btnVolver:hover {
+  background-color: #555555;
+  transform: translateY(-2px);
+}
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tabla de productos */
+.columnaProductos {
+  width: 100%;
+}
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+.tabla th {
+  background-color: #f1c40f; /* Color mostaza de la imagen */
+  color: #fff;
+  padding: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+.tabla td {
+  padding: 20px 15px;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+
+/* Celdas específicas */
+.celdaEliminar {
+  width: 40px;
+}
+.btnEliminar {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #999;
+  transition: color 0.2s;
+}
+.btnEliminar:hover {
+  color: #e74c3c;
+}
+
+.celdaProducto {
+  min-width: 280px;
+}
+.infoProducto {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.imagenProducto {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.nombre {
+  font-weight: 600;
+  margin: 0 0 5px 0;
+  color: #2c3e50;
+}
+.detalles {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* Controles de cantidad */
+.controles {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.btnCantidad {
+  background-color: #fff;
+  border: none;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+.btnCantidad:hover:not(:disabled) {
+  background-color: #f5f5f5;
+}
+.btnCantidad:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+.cantidadText {
+  padding: 0 15px;
+  font-weight: 600;
+}
+
+/* Sección inferior de la tabla (Cupones) */
+.accionesAbajo {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  background-color: #fff;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.cuponBox {
+  display: flex;
+  gap: 10px;
+}
+.inputCupon {
   border: 1px solid #ddd;
-  border-radius: 12px;
-
-  padding: 15px 20px;
-  margin-bottom: 15px;
-
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 10px 15px;
+  outline: none;
+  width: 200px;
 }
-
-.info {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+.btnCupon, .btnCheckout {
+  background-color: #3d2314; /* Marrón oscuro de la imagen */
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  transition: background 0.3s;
 }
-
-.nombre {
-  font-weight: bold;
-  font-size: 1.1rem;
+.btnCupon:hover, .btnCheckout:hover {
+  background-color: #55331c;
 }
-
-.precio {
-  color: #666;
-}
-
-/* =========================
-   BOTONES
-========================= */
-
-.botones {
-  display: flex;
-  gap: 10px;
-}
-
 .btnVaciar {
-  display: block;
-  margin: 30px auto 0;
-
-  background-color: #333;
-  color: white;
-
-  padding: 12px 20px;
-  border-radius: 10px;
-
-  transition: 0.3s;
+  background: none;
+  border: none;
+  color: #333;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 600;
 }
 
-.btnVaciar:hover {
-  background-color: #111;
+/* Columna Resumen (Card de la derecha) */
+.cardResumen {
+  background-color: #fff;
+  border: 1px solid #eee;
+  padding: 30px;
+  border-radius: 4px;
 }
-
-.total {
-  text-align: center;
-  margin: 20px 0;
-  font-size: 1.5rem;
-  font-weight: bold;
+.tituloResumen {
+  font-size: 1.3rem;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
 }
-
-/* =========================
-   CARRITO VACÍO
-========================= */
-
-.vacio {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #777;
-}
-
-.btnComprar {
-  display: block;
-  margin: 15px auto 0;
-
-  background-color: #4caf50;
-  color: white;
-
-  padding: 12px 20px;
-  border-radius: 10px;
-
-  transition: 0.3s;
-}
-
-.btnComprar:hover {
-  background-color: #388e3c;
-}
-
-.controles {
+.filaResumen {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  color: #666;
+  font-size: 0.95rem;
 }
-
-.btnCantidad {
-  background-color: #ddd;
-  padding: 5px 10px;
-  border-radius: 5px;
-  transition: 0.2s;
+.separador {
+  border: 0;
+  border-top: 1px solid #eee;
+  margin: 20px 0;
 }
-
-.btnCantidad:hover {
-  background-color: #bbb;
-}
-
-.cantidad {
+.totalDestacado {
+  font-size: 1.2rem;
   font-weight: bold;
-  min-width: 20px;
+  color: #000;
+  margin-bottom: 25px;
+}
+.btnCheckout {
+  width: 100%;
+  padding: 15px;
   text-align: center;
 }
 
-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-
-/*animacion*/
-@keyframes pop {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
-}
-
-.cantidad {
-  animation: pop 0.2s ease-in-out;
-}
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 768px) {
-  .item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-  }
-
-  .botones {
-    width: 100%;
-  }
-
- 
+/* Carrito Vacío */
+.vacioContainer {
+  text-align: center;
+  padding: 50px 0;
 }

@@ -1,87 +1,112 @@
 import { useState } from "react";
-import Formulario from "./Formulario";
+import FormularioProducto from "./FormularioProducto";
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
 
 function FormularioContainer() {
-  const [datosForm, setDatosForm] = useState({
-    nombre: "",
-    precio: "",
-    imagen: "",
-  });
-
-  const [loadingImg, setLoadingImg] = useState(false);
-
-  // 🧠 manejar inputs normales
-  const manejarCambio = (e) => {
-    setDatosForm({
-      ...datosForm,
-      [e.target.name]: e.target.value,
+    const [datosForm, setDatosForm] = useState({
+        nombre: '',
+        precio: '',
+        stock: '',
     });
-  };
 
-  // 📤 subir imagen a ImgBB
-  const subirImagen = async (file) => {
-    const formData = new FormData();
-    formData.append("image", file);
+    // 1. Nuevo estado para el archivo de imagen
+    const [imagenFile, setImagenFile] = useState(null);
 
-    const apiKey = "TU_API_KEY_AQUI";
+    //Ejercicio Clase 6
+    //Paso 1
+    const [loading, setLoading] = useState(false);
 
-    const res = await fetch(
-      `https://api.imgbb.com/1/upload?key=${apiKey}`,
-      {
-        method: "POST",
-        body: formData,
-      }
+    const manejarCambio = (evento) => {
+        const { name, value } = evento.target;
+        setDatosForm({
+            ...datosForm,
+            [name]: value
+        });
+    };
+
+    // 2. Nueva función para manejar el cambio del input de tipo "file"
+    const manejarCambioImagen = (evento) => {
+        setImagenFile(evento.target.files[0]);
+    };
+
+    const manejarEnvio = async (evento) => {
+        evento.preventDefault();
+        // Validamos que el usuario haya seleccionado una imagen
+        if (!imagenFile) {
+            alert("Por favor, selecciona una imagen para el producto.");
+            return;
+        }
+
+        //Ejercicio Clase 6
+        //Paso 2
+        setLoading(true);
+        console.log("Loading...");
+
+        // --- Lógica para subir la imagen a Imgbb ---
+        const apiKey = '1ac81cf4c3348932a5148cdffe3dfaee'; // 🚨 ¡Reemplazá esto con tu clave!
+        const formData = new FormData();
+        formData.append('image', imagenFile);
+
+        try {
+            console.log("Subiendo imagen a Imgbb...");
+
+            const respuestaImgbb = await
+                fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
+                    method: 'POST',
+                    body: formData,
+                });
+
+            const datosImgbb = await respuestaImgbb.json();
+
+            if (datosImgbb.success) {
+                console.log("Imagen subida con éxito. URL:", datosImgbb.data.url);
+
+                // Unimos la URL de la imagen con el resto de los datos del formulario
+                const productoCompleto = {
+                    ...datosForm,
+                    // Agregamos la URL obtenida
+                    imagen: datosImgbb.data.url
+                };
+
+                // Por el momento hacemos un console.log
+                console.log('Enviando producto a Firebase:',
+                    productoCompleto);
+
+                // Obtenemos la instancia de la base de datos
+                const db = getFirestore();
+                // Apuntamos a la colección "productos" (si no existe, se crea)
+                const productosCollection = collection(db, "productos");
+                // Agregamos el nuevo documento a la colección
+                await addDoc(productosCollection, productoCompleto);
+
+
+            } else {
+                throw new Error('La subida de la imagen a Imgbb falló.');
+            }
+        } catch (error) {
+            console.error("Error en el proceso de envío:", error);
+            alert("Hubo un error al subir la imagen. Por favor, intentá de nuevo.");
+        }
+
+        //Ejercicio Clase 6
+        //Paso 3
+        finally {
+            //Desactivar loading
+            setLoading(false);
+        }
+    };
+
+    return (
+        <FormularioProducto
+            datosForm={datosForm}
+            manejarCambio={manejarCambio}
+            manejarEnvio={manejarEnvio}
+            manejarCambioImagen={manejarCambioImagen}
+            //Ejercicio Clase 6
+            //Paso 4
+            loading={loading}
+        />
     );
-
-    const data = await res.json();
-    return data.data.url;
-  };
-
-  // 📸 manejar selección de imagen
-  const manejarImagen = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    setLoadingImg(true);
-
-    try {
-      const url = await subirImagen(file);
-
-      setDatosForm((prev) => ({
-        ...prev,
-        imagen: url,
-      }));
-    } catch (error) {
-      console.error("Error subiendo imagen", error);
-    } finally {
-      setLoadingImg(false);
-    }
-  };
-
-  // ✅ enviar formulario
-  const manejarEnvio = (e) => {
-    e.preventDefault();
-
-    console.log("Producto completo:", datosForm);
-
-    // 👉 después podés guardar en JSON server o API
-
-    setDatosForm({
-      nombre: "",
-      precio: "",
-      imagen: "",
-    });
-  };
-
-  return (
-    <Formulario
-      datosForm={datosForm}
-      manejarCambio={manejarCambio}
-      manejarEnvio={manejarEnvio}
-      manejarImagen={manejarImagen}
-      loadingImg={loadingImg}
-    />
-  );
 }
 
 export default FormularioContainer;

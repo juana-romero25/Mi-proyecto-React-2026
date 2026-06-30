@@ -1,19 +1,132 @@
 .card {
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 15px;
-  text-align: center;
-  transition: 0.3s;
-  background: white;
+  background-color: #ffffff;
+  border: 1px solid #eef0f2;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  height: 100%;
+  position: relative;
 }
 
+/* Sutil sombra y elevación al pasar el mouse por encima de la tarjeta */
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
 }
 
-.card img {
+.productLink {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* Contenedor de imagen que oculta el zoom excedente */
+.imageWrapper {
   width: 100%;
-  height: 150px;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: #fcfcfc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 2px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Efecto de zoom suave y elegante al hacer hover */
+.card:hover .image {
+  transform: scale(1.06);
+}
+
+/* Badges informativos flotantes */
+.lowStockBadge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #ff4d4f;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.outOfStockBadge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #999;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Textos e información */
+.info {
+  padding: 14px 0;
+  text-align: left; /* Alineado a la izquierda da un look más editorial y moderno */
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.category {
+  font-size: 0.7rem;
+  color: #9c9c9c;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.title {
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: #2c2c2c;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.price {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #111111;
+  margin: 4px 0 0 0;
+}
+
+/* Botón de acción principal al estilo de la imagen de referencia */
+.actionButton {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  background-color: #222222; /* Negro profundo o gris oscuro de marca */
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: background-color 0.2s ease;
+  border-radius: 2px;
+  margin-top: 8px;
+}
+
+.actionButton:hover {
+  background-color: #555555; /* Cambio de color sutil */
 }

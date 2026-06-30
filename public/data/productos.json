@@ -4,9 +4,11 @@
     "nombre": "Buzitos perro",
     "precio": 5000,
     "stock": 22,
+    "destacado": true,
+    "categoria": "Ropa",
     "imagen": "/multimedia/buzitos.jpg",
-    "categoria": "Perro"
-    
+    "descripcion": "Buzo de polar, con orejitas de conejo",
+    "detalle": "Buzo confeccionado en polar suave y cálido. Su diseño con capucha y orejitas brinda comodidad, abrigo y estilo para paseos durante días fríos."
   },
   {
     "id": 2,
@@ -14,15 +16,19 @@
     "precio": 5000,
     "stock": 22,
     "imagen": "/multimedia/cama.jpg",
-     "categoria": "Perro"
+    "categoria": "Accesorios",
+    "descripcion": "Cama acolchada para perros medianos",
+    "detalle": "Cama acolchada diseñada para perros medianos. Ofrece descanso confortable gracias a sus materiales suaves, resistentes y fáciles de limpiar diariamente."
   },
   {
     "id": 3,
-    "nombre": "Rascador Gato",
+    "nombre": "Rascador para Gato",
     "precio": 5000,
     "stock": 22,
     "imagen": "/multimedia/rascador-gato.jpg",
-    "categoria": "Gato"
+    "categoria": "Accesorios",
+    "descripcion": "Rascador resistente para gatos",
+    "detalle": "Rascador fabricado con materiales duraderos que ayuda al cuidado de las uñas. Reduce daños en muebles y estimula la actividad física."
   },
   {
     "id": 4,
@@ -30,7 +36,9 @@
     "precio": 5000,
     "stock": 22,
     "imagen": "/multimedia/correas.jpg",
-    "categoria": "Gato"
+    "categoria": "Accesorios",
+    "descripcion": "Correa ajustable para gatos",
+    "detalle": "Correa ajustable con cierre seguro y materiales resistentes. Permite paseos cómodos y controlados, brindando mayor seguridad para tu mascota."
   },
   {
     "id": 5,
@@ -38,7 +46,9 @@
     "precio": 5000,
     "stock": 22,
     "imagen": "/multimedia/alimento-perro.jpg",
-    "categoria": "Perro"
+    "categoria": "Alimento",
+    "descripcion": "Alimento balanceado para perros",
+    "detalle": "Alimento completo formulado con proteínas, vitaminas y minerales esenciales. Contribuye al desarrollo saludable, energía diaria y bienestar general."
   },
   {
     "id": 6,
@@ -46,6 +56,8 @@
     "precio": 5000,
     "stock": 22,
     "imagen": "/multimedia/alimento-gato.jpg",
-    "categoria": "Gato"
+    "categoria": "Alimento",
+    "descripcion": "Alimento premium para gatos",
+    "detalle": "Alimento premium elaborado con ingredientes seleccionados. Favorece una nutrición equilibrada, digestión adecuada y mantenimiento óptimo de la salud."
   }
 ]

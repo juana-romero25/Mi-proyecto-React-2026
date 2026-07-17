@@ -79,3 +79,8 @@ Para desplegar en plataformas como Vercel o Netlify:
 * React Router DOM
 * React Icons
 * React Helmet Async
+  
+# usuarios:
+admin: admin@patitas.com
+contraseña: 124578
+

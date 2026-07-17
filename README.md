@@ -1,6 +1,6 @@
 # Patitas Pet Store
 
-E-commerce desarrollado con React y Firebase como proyecto final del curso "Primeros Pasos con ReactJS".
+E-commerce desarrollado con React y Firebase como proyecto final del curso "TALENTO TECH RECT JS-2026".
 
 ## Requisitos
 

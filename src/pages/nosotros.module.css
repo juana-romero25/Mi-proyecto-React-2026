@@ -1,0 +1,97 @@
+.nosotrosContainer {
+  max-width: 1200px;
+  margin: auto;
+  padding: 80px 20px;
+}
+
+.nosotrosHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.nosotrosTitulo {
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 20px 0;
+  color: var(--text-dark); /* #6F6F76 */
+}
+
+.nosotrosDescripcion {
+  color: var(--text-dark);
+  max-width: 650px;
+  margin: auto;
+  font-size: 18px;
+  opacity: 0.85;
+}
+
+.equipoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.miembroCard {
+  background: var(--card-bg);
+  border-radius: 24px;
+  overflow: hidden;
+  border: 2px solid var(--secondary);
+  transition: all 0.3s ease;
+}
+
+.miembroCard:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 30px rgba(157, 163, 221, 0.25);
+}
+
+.imagenContainer {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: var(--primary-light);
+}
+
+.miembroImagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.miembroInfo {
+  padding: 30px;
+}
+
+.miembroInfo h3 {
+  font-size: 30px;
+  margin-bottom: 5px;
+  color: var(--text-dark);
+}
+
+.miembroRol {
+  font-weight: 600;
+  color: var(--primary); /* #9DA3DD */
+  margin-bottom: 20px;
+}
+
+.miembroDescripcion {
+  color: var(--text-dark);
+  opacity: 0.85;
+  line-height: 1.7;
+  margin-bottom: 25px;
+}
+
+.miembroEmail {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 600;
+
+  transition: color 0.3s ease;
+}
+
+.miembroEmail:hover {
+  color: var(--accent); /* #ECA564 */
+}

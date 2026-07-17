@@ -3,45 +3,49 @@
   margin: 0 auto;
   padding: 30px 20px;
   font-family: Arial, sans-serif;
-  color: #333;
+  color: var(--text-dark);
 }
 
+/* Botón ir al carrito */
 .btnGoToCart {
   display: block;
   text-align: center;
   padding: 14px 28px;
-  background-color: #111111; /* Negro destacado */
-  color: #ffffff;
+  background-color: var(--accent);
+  color: var(--text-light);
   text-decoration: none;
   font-size: 0.85rem;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  border-radius: 2px;
-  width: 100%; /* Toma todo el ancho del bloque de acciones */
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  border-radius: 10px;
+  width: 100%;
+  transition: all 0.3s ease;
 }
 
 .btnGoToCart:hover {
-  background-color: #444444;
+  background-color: var(--accent-hover);
   transform: translateY(-2px);
 }
 
 /* Breadcrumb */
 .breadcrumb {
   font-size: 0.8rem;
-  color: #999;
+  color: var(--text-dark);
+  opacity: 0.7;
   margin-bottom: 30px;
 }
+
 .breadcrumb span {
   cursor: pointer;
 }
+
 .activeBreadcrumb {
-  color: #555;
+  color: var(--primary);
   font-weight: bold;
 }
 
-/* Layout Principal (Dos columnas arriba) */
+/* Layout principal */
 .mainLayout {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -56,82 +60,96 @@
   }
 }
 
-/* Sección Galería */
+/* Galería */
 .gallerySection {
   display: flex;
   gap: 15px;
 }
+
 .thumbnails {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
+
 .thumbBox {
   width: 70px;
   height: 70px;
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
+  background-color: var(--card-bg);
+  border: 1px solid var(--secondary);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .thumbBox img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.6;
+  opacity: 0.7;
 }
+
 .mainImageBox {
   flex-grow: 1;
-  background-color: #e5e5e5;
-  border: 1px solid #ddd;
+  background-color: var(--card-bg);
+  border: 2px solid var(--secondary);
+  border-radius: 16px;
   aspect-ratio: 1 / 1;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  
 }
+
 .mainImage {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  
 }
 
-/* Sección Datos Compra (Derecha) */
+/* Información producto */
 .infoSection {
   display: flex;
   flex-direction: column;
 }
+
 .metaCategory {
   font-size: 0.75rem;
-  color: #999;
+  color: var(--primary);
   letter-spacing: 1px;
+  font-weight: bold;
 }
+
 .productTitle {
   font-size: 2rem;
   margin: 10px 0;
-  font-weight: 400;
-  color: #222;
+  font-weight: 700;
+  color: var(--text-dark);
 }
+
 .ratingBox {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 20px;
 }
+
 .stars {
-  color: #ccc;
+  color: var(--accent);
   font-size: 0.9rem;
 }
+
 .reviewsCount {
   font-size: 0.85rem;
-  color: #777;
+  color: var(--text-dark);
+  opacity: 0.7;
 }
+
 .price {
   font-size: 1.75rem;
   font-weight: bold;
-  color: #111;
+  color: var(--accent);
   margin-bottom: 25px;
 }
 
@@ -141,87 +159,109 @@
   flex-direction: column;
   margin-bottom: 20px;
 }
+
 .selectorGroup label {
   font-size: 0.85rem;
-  color: #666;
+  color: var(--text-dark);
   margin-bottom: 5px;
 }
+
 .selectInput {
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--secondary);
+  border-radius: 8px;
   outline: none;
-  background-color: #fff;
-  color: #555;
+  background-color: var(--card-bg);
+  color: var(--text-dark);
   font-size: 0.9rem;
+}
+
+.selectInput:focus {
+  border-color: var(--primary);
 }
 
 .metaRow {
   display: flex;
   justify-content: space-between;
   font-size: 0.85rem;
-  color: #666;
+  color: var(--text-dark);
   margin: 15px 0 25px 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--secondary);
   padding-bottom: 15px;
 }
 
-/* Acciones de compra */
+/* Acciones compra */
 .purchaseActions {
   display: flex;
   gap: 15px;
   margin-bottom: 25px;
 }
+
 .cantidadContainer {
   display: flex;
   align-items: center;
-  border: 1px solid #ccc;
-  background: #fdfdfd;
+  border: 1px solid var(--secondary);
+  border-radius: 8px;
+  background: var(--card-bg);
 }
+
 .btnCantidad {
   background: none;
   border: none;
   padding: 10px 15px;
   cursor: pointer;
   font-size: 1.1rem;
+  color: var(--primary);
+  transition: color 0.3s ease;
 }
+
+.btnCantidad:hover {
+  color: var(--accent);
+}
+
 .cantidadValor {
   padding: 0 15px;
   font-size: 0.95rem;
 }
+
 .btnAddToCart {
   flex-grow: 1;
-  background-color: #7a7a7a;
-  color: #fff;
+  background-color: var(--primary);
+  color: var(--text-light);
   border: none;
+  border-radius: 10px;
   text-transform: uppercase;
   font-size: 0.85rem;
   letter-spacing: 1px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.3s ease;
 }
+
 .btnAddToCart:hover:not(:disabled) {
-  background-color: #5a5a5a;
+  background-color: var(--accent);
 }
+
 .btnAddToCart:disabled {
-  background-color: #ccc;
+  background-color: #d4d4d4;
   cursor: not-allowed;
 }
 
 .shareSection {
   font-size: 0.8rem;
-  color: #777;
+  color: var(--text-dark);
+  opacity: 0.7;
   display: flex;
   gap: 10px;
   align-items: center;
   margin-top: 15px;
 }
 
-/* Bloque Inferior Pestañas */
+/* Parte inferior */
 .extendedLayout {
   display: grid;
   grid-template-columns: 1.3fr 0.7fr;
   gap: 60px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--secondary);
   padding-top: 40px;
   margin-bottom: 60px;
 }
@@ -236,140 +276,161 @@
 .tabsHeader {
   display: flex;
   gap: 30px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--secondary);
   margin-bottom: 25px;
 }
+
 .tabButton {
   background: none;
   border: none;
   padding-bottom: 12px;
   font-size: 1.1rem;
   cursor: pointer;
-  color: #999;
+  color: var(--text-dark);
+  opacity: 0.6;
   position: relative;
 }
+
 .tabActive {
-  color: #111;
+  color: var(--primary);
+  opacity: 1;
 }
+
 .tabActive::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -1px;
   left: 0;
   width: 100%;
-  height: 2px;
-  background-color: #111;
+  height: 3px;
+  background-color: var(--accent);
 }
-.descriptionContent p {
-  color: #666;
-  line-height: 1.6;
-  font-size: 0.95rem;
+
+.descriptionContent p,
+.descriptionContent ul {
+  color: var(--text-dark);
+  line-height: 1.7;
 }
+
 .descriptionContent h4 {
-  margin: 25px 0 10px 0;
-  font-weight: bold;
+  margin: 25px 0 10px;
+  color: var(--primary);
 }
+
 .descriptionContent ul {
   padding-left: 20px;
-  color: #666;
-  line-height: 1.8;
-  font-size: 0.9rem;
 }
 
 /* Información adicional */
 .additionalInfo h3 {
   font-size: 1rem;
   margin-bottom: 20px;
-  font-weight: bold;
 }
+
 .infoMetaField {
   margin-bottom: 15px;
 }
+
 .metaLabel {
   display: block;
   font-size: 0.75rem;
   font-weight: bold;
-  color: #222;
-  margin-bottom: 2px;
-}
-.metaValue {
-  font-size: 0.9rem;
-  color: #777;
+  color: var(--primary);
 }
 
-/* Sugerencias finales */
+.metaValue {
+  font-size: 0.9rem;
+  color: var(--text-dark);
+}
+
+/* Relacionados */
 .relatedSection {
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--secondary);
   padding-top: 40px;
 }
+
 .relatedTitle {
   font-size: 1.5rem;
   text-align: center;
   margin-bottom: 30px;
-  font-weight: 400;
+  color: var(--text-dark);
 }
+
 .carouselPlaceholder {
   display: flex;
   align-items: center;
   gap: 15px;
 }
+
 .carouselArrow {
   background: none;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: #999;
+  color: var(--primary);
 }
+
+.carouselArrow:hover {
+  color: var(--accent);
+}
+
 .carouselGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   flex-grow: 1;
 }
+
 @media (max-width: 700px) {
   .carouselGrid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
 .miniCard {
- text-align: center;
+  text-align: center;
   font-size: 0.85rem;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
+
 .miniCard:hover {
-  transform: translateY(-5px); /* Pequeño efecto flotante al pasar el mouse */
+  transform: translateY(-5px);
 }
 
 .miniImgBox {
- background-color: #f9f9f9;
+  background-color: var(--card-bg);
   aspect-ratio: 1 / 1;
   margin-bottom: 10px;
-  border: 1px solid #eee;
+  border: 1px solid var(--secondary);
+  border-radius: 10px;
+
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border-radius: 4px;
 }
+
 .miniImg {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Hace que la imagen llene el recuadro sin deformarse */
+  object-fit: cover;
 }
 
 .miniNombre {
   margin: 5px 0;
-  color: #444;
+  color: var(--text-dark);
   font-weight: 500;
 }
 
 .miniPrecio {
   font-weight: bold;
-  color: #111;
+  color: var(--accent);
 }
+
 .mensajeExito {
-  color: green;
+  color: var(--accent);
   font-size: 0.9rem;
   margin-top: 10px;
+  font-weight: bold;
 }

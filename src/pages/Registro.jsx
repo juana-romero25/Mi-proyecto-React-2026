@@ -1,100 +1,128 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../auth/AuthContext";
-import styles from "./auth.module.css";
+import { useAuth } from "../hooks/useAuth";
+import SEO from "../Components/common/SEO";
+import styles from "./registro.module.css";
 
-function Registro() {
-  const [form, setForm] = useState({
-    nombre: "",
-    email: "",
-    password: "",
-  });
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const { register } = useAuth();
+export default function Registro() {
+  const { signup, error, setError } = useAuth();
+
   const navigate = useNavigate();
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-  };
+  const [nombre, setNombre] = useState("");
+  const [telefono, setTelefono] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [cargando, setCargando] = useState(false);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     setError("");
 
-    if (!form.nombre || !form.email || form.password.length < 6) {
-      setError("Completa los datos. La contrasena debe tener al menos 6 caracteres.");
+    if (password !== confirmPassword) {
+      setError("Las contraseñas no coinciden");
       return;
     }
 
+    if (password.length < 6) {
+      setError("La contraseña debe tener al menos 6 caracteres");
+      return;
+    }
+
+    setCargando(true);
+
     try {
-      setLoading(true);
-      await register(form);
-      navigate("/perfil");
+      await signup(nombre, email, password);
+
+      navigate("/login");
     } catch (err) {
-      setError("No se pudo crear la cuenta. Revisa la configuracion de Firebase.");
-      console.error(err);
+      if (err.code === "auth/email-already-in-use") {
+        setError("Este email ya está registrado");
+      } else if (err.code === "auth/invalid-email") {
+        setError("El email no es válido");
+      } else {
+        setError("Error al registrarse");
+      }
     } finally {
-      setLoading(false);
+      setCargando(false);
     }
   };
 
   return (
-    <section className={styles.page}>
-      <h1 className={styles.title}>Crear cuenta</h1>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <label className={styles.label}>
-          Nombre
-          <input
-            className={styles.input}
-            type="text"
-            name="nombre"
-            value={form.nombre}
-            onChange={handleChange}
-            autoComplete="name"
-          />
-        </label>
+    <div className={styles.container}>
+      <SEO titulo="Registro" />
 
-        <label className={styles.label}>
-          Email
-          <input
-            className={styles.input}
-            type="email"
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            autoComplete="email"
-          />
-        </label>
+      <div className={styles.card}>
+        <h1 className={styles.mainTitle}>Crear Cuenta de Usuario</h1>
 
-        <label className={styles.label}>
-          Contrasena
-          <input
-            className={styles.input}
-            type="password"
-            name="password"
-            value={form.password}
-            onChange={handleChange}
-            autoComplete="new-password"
-          />
-        </label>
+        <form onSubmit={handleSubmit}>
+          <h2 className={styles.sectionTitle}>Información Personal</h2>
 
-        {error && <p className={styles.error}>{error}</p>}
+          <p className={styles.subtitle}>
+            Proporciona tus datos básicos para la cuenta.
+          </p>
 
-        <button className={styles.button} type="submit" disabled={loading}>
-          {loading ? "Creando..." : "Registrarme"}
-        </button>
-      </form>
+          <div className={styles.inputGroup}>
+            <label>Nombre Completo</label>
+            <input
+              type="text"
+              value={nombre}
+              onChange={(e) => setNombre(e.target.value)}
+              placeholder="Tu nombre completo"
+              required
+            />
+          </div>
 
-      <p className={styles.hint}>
-        Ya tienes cuenta?{" "}
-        <Link className={styles.link} to="/login">
-          Inicia sesion
-        </Link>
-      </p>
-    </section>
+          <div className={styles.inputGroup}>
+            <label>Correo Electrónico</label>
+            <input
+              type="email"
+              placeholder="ejemplo@dominio.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+
+          <h2 className={styles.sectionTitle}>Seguridad de la Cuenta</h2>
+
+          <p className={styles.subtitle}>Configura tu contraseña segura.</p>
+
+          <div className={styles.inputGroup}>
+            <label>Contraseña</label>
+            <input
+              type="password"
+              placeholder="Ingresa tu contraseña"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className={styles.inputGroup}>
+            <label>Confirmar Contraseña</label>
+            <input
+              type="password"
+              placeholder="Confirma tu contraseña"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+          </div>
+
+          {error && <p className={styles.error}>{error}</p>}
+
+          <button type="submit" className={styles.button} disabled={cargando}>
+            {cargando ? "Registrando..." : "Registrarse"}
+          </button>
+
+          <p className={styles.loginText}>
+            ¿Ya tenés cuenta? <Link to="/login">Iniciar sesión</Link>
+          </p>
+        </form>
+      </div>
+    </div>
   );
 }
-
-export default Registro;

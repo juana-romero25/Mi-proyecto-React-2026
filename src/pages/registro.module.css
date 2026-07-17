@@ -1,0 +1,72 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.card {
+  width: 100%;
+  max-width: 650px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 25px;
+  padding: 40px;
+}
+
+.mainTitle {
+  text-align: center;
+  color: #4b365f;
+  margin-bottom: 30px;
+}
+
+.sectionTitle {
+  color: #4b365f;
+  margin-top: 25px;
+}
+
+.subtitle {
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.inputGroup label {
+  margin-bottom: 8px;
+  color: #4b365f;
+}
+
+.inputGroup input {
+  height: 50px;
+  border: 2px solid #f3a0cf;
+  border-radius: 10px;
+  padding: 0 15px;
+  font-size: 16px;
+}
+
+.button {
+  width: 100%;
+  height: 55px;
+  border: none;
+  border-radius: 10px;
+  background: #60dbe8;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.error {
+  color: red;
+  margin-bottom: 15px;
+}
+
+.loginText {
+  text-align: center;
+  margin-top: 20px;
+}

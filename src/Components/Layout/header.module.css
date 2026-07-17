@@ -1,13 +1,25 @@
 .header {
-  background-color: aquamarine;
+  background-color: var(--primary); /* #9DA3DD */
+  color: var(--text-light); /* #FFFFFF */
   padding: 20px;
   text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
+/* Si tienes enlaces dentro del header */
+.header a {
+  color: var(--text-light);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
 
+.header a:hover {
+  color: var(--accent); /* #ECA564 */
+}
 
 @media (max-width: 600px) {
   .header {
+    padding: 15px;
     font-size: 14px;
   }
 }

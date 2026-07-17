@@ -1,8 +1,6 @@
-// Importaciones clave para obtener un solo documento
 import { getDoc, query, collection, where, getDocs } from "firebase/firestore";
-import { db } from '../../../firebase/config';//revisa esta ruta para que sea correcta
+import { db } from '../../../firebase/config';
 
-//cambiar el useEffect
 useEffect(() => {
         if (!id) return;
 

@@ -6,7 +6,7 @@ import styles from "./home.module.css";
 const slides = [
   {
     id: 1,
-    imagen: "/multimedia/banner1.webp",
+    imagen: "/multimedia/fondo-perros.jpg",
   },
   {
     id: 2,
@@ -16,6 +16,11 @@ const slides = [
     id: 3,
     imagen: "/multimedia/banner3.webp",
   },
+  {
+    id: 4,
+    imagen: "/multimedia/banner1.webp",
+  },
+  
 ];
 
 function Home() {
@@ -24,7 +29,7 @@ function Home() {
   const touchStart = useRef(0);
   const touchEnd = useRef(0);
 
-  // autoplay
+  
   useEffect(() => {
     if (paused) return;
 
@@ -45,7 +50,7 @@ function Home() {
     );
   };
 
-  // swipe mobile
+ 
   const handleTouchStart = (e) => {
     touchStart.current = e.targetTouches[0].clientX;
   };
@@ -83,7 +88,7 @@ function Home() {
         ))}
       </div>
 
-      {/* BOTONES */}
+   
       <button className={styles.prev} onClick={prevSlide}>
         <ChevronLeft size={36} />
       </button>
@@ -92,7 +97,7 @@ function Home() {
         <ChevronRight size={36} />
       </button>
 
-      {/* DOTS */}
+     
       <div className={styles.dots}>
         {slides.map((_, i) => (
           <span
@@ -103,7 +108,7 @@ function Home() {
         ))}
       </div>
 
-      {/* BENEFICIOS */}
+  
       <section className={styles.beneficios}>
         <div className={styles.item}>
           <span className={styles.icon}>
@@ -135,7 +140,9 @@ function Home() {
           </div>
         </div>
       </section>
-    </div>
+     
+      
+    </div> 
   );
 }
 

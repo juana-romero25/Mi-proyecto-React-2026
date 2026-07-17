@@ -1,0 +1,149 @@
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px 16px;
+  min-height: 60vh;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  padding: 40px 32px;
+  max-width: 450px;
+  width: 100%;
+  text-align: center;
+  color: var(--text-dark);
+  border: 2px solid var(--secondary);
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  background: var(--primary);
+  color: var(--text-light);
+
+  font-size: 2rem;
+  font-weight: bold;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 16px;
+}
+
+.nombre {
+  font-size: 1.5rem;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.email {
+  color: #8a8a8a;
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+}
+
+.info {
+  background: var(--primary-light);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.fila {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(111, 111, 118, 0.15);
+  font-size: 0.9rem;
+}
+
+.fila:last-child {
+  border-bottom: none;
+}
+
+.label {
+  color: var(--text-dark);
+}
+
+.valor {
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+.botones {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btnGestion,
+.adminButton {
+  background: var(--primary);
+  color: var(--text-light);
+
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+
+  font-weight: bold;
+  text-decoration: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btnGestion:hover,
+.adminButton:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+}
+
+.btnLogout,
+.logoutButton {
+  background: transparent;
+  color: var(--accent);
+
+  border: 2px solid var(--accent);
+  padding: 12px;
+  border-radius: 10px;
+
+  font-weight: bold;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.btnLogout:hover,
+.logoutButton:hover {
+  background: var(--accent);
+  color: var(--text-light);
+}
+
+.icono {
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+.adminPanel {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}

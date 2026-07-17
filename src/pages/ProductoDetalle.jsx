@@ -1,6 +1,7 @@
-import { useParams, useNavigate, Link } from "react-router-dom"; // Link agregado
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useCart } from "../cart/CartContext"; // Cambiado a useCart para consumir el hook premium
+import { useCart } from "../context/CartContext";
+import { obtenerCatalogo } from "../services/productoService";
 import styles from "./productoDetalle.module.css";
 
 function ProductoDetalle() {
@@ -18,28 +19,34 @@ function ProductoDetalle() {
   const { addToCart, isInCart } = useCart();
 
   useEffect(() => {
-    fetch("/data/productos.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const prod = data.find((p) => p.id === Number(id));
-        if (prod) {
-          setProducto(prod);
-          setStockActual(prod.stock);
+    async function cargarProducto() {
+      const data = await obtenerCatalogo();
 
-          // FILTRADO INTELIGENTE:
-          // Buscamos productos de la misma categoría, pero que NO tengan el mismo ID
-          const filtrados = data.filter(
-            (item) => item.categoria === prod.categoria && item.id !== prod.id
+      const prod = data.find((p) => String(p.id) === String(id));
+
+      if (prod) {
+        setProducto(prod);
+        setStockActual(prod.stock);
+
+        const filtrados = data.filter(
+          (item) =>
+            item.categoria === prod.categoria &&
+            String(item.id) !== String(prod.id),
+        );
+
+        if (filtrados.length === 0) {
+          setRelacionados(
+            data
+              .filter((item) => String(item.id) !== String(prod.id))
+              .slice(0, 4),
           );
-
-          // Si no hay suficientes de la misma categoría, puedes mostrar otros cualquiera para rellenar
-          if (filtrados.length === 0) {
-            setRelacionados(data.filter((item) => item.id !== prod.id).slice(0, 4));
-          } else {
-            setRelacionados(filtrados.slice(0, 4)); // Tomamos máximo 4 sugerencias
-          }
+        } else {
+          setRelacionados(filtrados.slice(0, 4));
         }
-      });
+      }
+    }
+
+    cargarProducto();
   }, [id]);
 
   const handleAdd = () => {
@@ -52,12 +59,11 @@ function ProductoDetalle() {
   };
 
   if (!producto) {
-    return <p className={styles.loading}>Cargando producto...</p>;
+    return <p className={styles.loading}>Cargando productos...</p>;
   }
 
   return (
     <section className={styles.container}>
-      {/* Breadcrumb superior */}
       <div className={styles.breadcrumb}>
         <span onClick={() => navigate("/")}>INICIO</span> &gt;
         <span onClick={() => navigate(-1)}> COMPRAR</span> &gt;
@@ -67,24 +73,8 @@ function ProductoDetalle() {
         </span>
       </div>
 
-      {/* BLOQUE SUPERIOR: Galería e Info Principal */}
       <div className={styles.mainLayout}>
-        {/* Izquierda: Galería de Imágenes */}
         <div className={styles.gallerySection}>
-          <div className={styles.thumbnails}>
-            <div className={styles.thumbBox}>
-              <img src={producto.imagen} alt="thumb" />
-            </div>
-            <div className={styles.thumbBox}>
-              <img src={producto.imagen} alt="thumb" />
-            </div>
-            <div className={styles.thumbBox}>
-              <img src={producto.imagen} alt="thumb" />
-            </div>
-            <div className={styles.thumbBox}>
-              <img src={producto.imagen} alt="thumb" />
-            </div>
-          </div>
           <div className={styles.mainImageBox}>
             <img
               src={producto.imagen}
@@ -94,49 +84,30 @@ function ProductoDetalle() {
           </div>
         </div>
 
-        {/* Derecha: Opciones de Compra */}
         <div className={styles.infoSection}>
           <span className={styles.metaCategory}>
             {producto.categoria ? producto.categoria.toUpperCase() : "JEWELRY"}
           </span>
           <h1 className={styles.productTitle}>{producto.nombre}</h1>
 
-          {/* Estrellas de valoración estáticas */}
-          <div className={styles.ratingBox}>
-            <span className={styles.stars}>★★★★★</span>
-            <span className={styles.reviewsCount}>5 reviews</span>
-          </div>
+          <div className={styles.ratingBox}></div>
 
           <div className={styles.price}>${producto.precio.toFixed(2)}</div>
 
-          {/* Selectores del diseño */}
-          <div className={styles.selectorGroup}>
-            <label htmlFor="color-select">Color:</label>
-            <select id="color-select" className={styles.selectInput}>
-              <option value="turquoise">Turquoise</option>
-              <option value="brown">Brown</option>
-            </select>
-          </div>
+          <div className={styles.selectorGroup}></div>
 
-          {/* Estado de stock y SKU */}
           <div className={styles.metaRow}>
             <span>
-              <strong>Availability:</strong> {stockActual} in stock
-            </span>
-            <span>
-              <strong>SKU:</strong> ILMPT-C
+              <strong>Disponible:</strong> {stockActual} en stock
             </span>
           </div>
 
-          {/* CONTROLES DE COMPRA OPTIMIZADOS CON ISINCART */}
           <div className={styles.purchaseActions}>
             {isInCart(producto.id) ? (
-              /* Si el producto YA está en el carrito, mostramos el acceso directo */
               <Link to="/carrito" className={styles.btnGoToCart}>
                 Terminar mi compra 🛒
               </Link>
             ) : (
-              /* Si NO está en el carrito, mostramos los controles normales */
               <>
                 <div className={styles.cantidadContainer}>
                   <button
@@ -164,42 +135,27 @@ function ProductoDetalle() {
                   onClick={handleAdd}
                   disabled={stockActual === 0}
                 >
-                  Add to cart
+                  Agregar al carrito
                 </button>
               </>
             )}
           </div>
 
           {mensaje && <p className={styles.mensajeExito}>{mensaje}</p>}
-
-          {/* Redes Sociales */}
-          <div className={styles.shareSection}>
-            <span>SHARE ON:</span>
-            <span className={styles.socialIcons}>𝕗 𝕩 📷</span>
-          </div>
         </div>
       </div>
 
-      {/* BLOQUE INFERIOR: Pestañas de información extendida */}
       <div className={styles.extendedLayout}>
         <div className={styles.tabsAndDetails}>
-          {/* Encabezado de pestañas */}
           <div className={styles.tabsHeader}>
             <button
               className={`${styles.tabButton} ${tabActiva === "description" ? styles.tabActive : ""}`}
               onClick={() => setTabActiva("description")}
             >
-              Descripción Breve
-            </button>
-            <button
-              className={`${styles.tabButton} ${tabActiva === "details" ? styles.tabActive : ""}`}
-              onClick={() => setTabActiva("details")}
-            >
-              Detalles del Producto
+              Detalle de Producto
             </button>
           </div>
 
-          {/* Contenido de las pestañas */}
           <div className={styles.tabContent}>
             {tabActiva === "description" ? (
               <div className={styles.descriptionContent}>
@@ -213,7 +169,6 @@ function ProductoDetalle() {
           </div>
         </div>
 
-        {/* Datos fijos de la tienda a la derecha */}
         <div className={styles.additionalInfo}>
           <h3>Información de Envío y Cuidados</h3>
           <div className={styles.infoMetaField}>
@@ -231,17 +186,16 @@ function ProductoDetalle() {
         </div>
       </div>
 
-      {/* SUGERENCIAS: You may also like */}
       <div className={styles.relatedSection}>
         <h2 className={styles.relatedTitle}>También te puede interesar</h2>
-        
+
         <div className={styles.carouselPlaceholder}>
           <button className={styles.carouselArrow}>&lt;</button>
-          
+
           <div className={styles.carouselGrid}>
             {relacionados.map((rel) => (
-              <div 
-                key={rel.id} 
+              <div
+                key={rel.id}
                 className={styles.miniCard}
                 onClick={() => {
                   navigate(`/producto/${rel.id}`);
@@ -249,10 +203,16 @@ function ProductoDetalle() {
                 }}
               >
                 <div className={styles.miniImgBox}>
-                  <img src={rel.imagen} alt={rel.nombre} className={styles.miniImg} />
+                  <img
+                    src={rel.imagen}
+                    alt={rel.nombre}
+                    className={styles.miniImg}
+                  />
                 </div>
                 <p className={styles.miniNombre}>{rel.nombre}</p>
-                <span className={styles.miniPrecio}>${rel.precio.toLocaleString()}</span>
+                <span className={styles.miniPrecio}>
+                  ${rel.precio.toLocaleString()}
+                </span>
               </div>
             ))}
           </div>

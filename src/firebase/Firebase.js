@@ -1,23 +1,17 @@
-// src/firebase.js
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
-// REEMPLAZA ESTO con el objeto "firebaseConfig" que te dio la página de Firebase
 const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "TU_AUTH_DOMAIN",
-  projectId: "TU_PROJECT_ID",
-  storageBucket: "TU_STORAGE_BUCKET",
-  messagingSenderId: "TU_MESSAGING_SENDER_ID",
-  appId: "TU_APP_ID"
+  apiKey: "AIzaSyDlRuyGySuqnkZn2NZDi3Bo_R4o5zbOBiA",
+  authDomain: "pet-store-01.firebaseapp.com",
+  projectId: "pet-store-01",
+  storageBucket: "pet-store-01.firebasestorage.app",
+  messagingSenderId: "744037178522",
+  appId: "1:744037178522:web:190757792822ade0539323"
 };
 
-// Inicializar Firebase
 const app = initializeApp(firebaseConfig);
 
-// Exportar los servicios para usarlos en tus componentes
-export const auth = getAuth(app);
 export const db = getFirestore(app);
-
-export default app;
+export const auth = getAuth(app);

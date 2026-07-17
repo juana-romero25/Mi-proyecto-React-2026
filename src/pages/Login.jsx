@@ -1,85 +1,94 @@
 import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../auth/AuthContext";
-import styles from "./auth.module.css";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase/Firebase";
+import { Link, useNavigate } from "react-router-dom";
+import styles from "./login.module.css";
 
 function Login() {
-  const [form, setForm] = useState({ email: "", password: "" });
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
-  const location = useLocation();
-  const redirectTo = location.state?.from?.pathname || "/perfil";
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setError("");
-
-    if (!form.email || !form.password) {
-      setError("Ingresa email y contrasena.");
-      return;
-    }
+  const ingresar = async (e) => {
+    e.preventDefault();
 
     try {
-      setLoading(true);
-      await login(form.email, form.password);
-      navigate(redirectTo, { replace: true });
-    } catch (err) {
-      setError("No se pudo iniciar sesion. Revisa tus datos o Firebase.");
-      console.error(err);
-    } finally {
-      setLoading(false);
+      await signInWithEmailAndPassword(auth, email, password);
+
+      navigate("/perfil");
+    } catch (error) {
+      console.error(error);
+
+      switch (error.code) {
+        case "auth/invalid-credential":
+          alert("Email o contraseña incorrectos");
+          break;
+
+        case "auth/user-not-found":
+          alert("El usuario no existe");
+          break;
+
+        case "auth/wrong-password":
+          alert("La contraseña es incorrecta");
+          break;
+
+        default:
+          alert("Error al iniciar sesión");
+      }
     }
   };
 
   return (
-    <section className={styles.page}>
-      <h1 className={styles.title}>Iniciar sesion</h1>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <label className={styles.label}>
-          Email
-          <input
-            className={styles.input}
-            type="email"
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            autoComplete="email"
-          />
-        </label>
+    <div className={styles.container}>
+      <div className={styles.loginBox}>
+        <div className={styles.logo}>
+          <div className={styles.logoIcon}>🐾</div>
+          <h2 className={styles.logoText}>Patitas Vetcare</h2>
+        </div>
 
-        <label className={styles.label}>
-          Contrasena
-          <input
-            className={styles.input}
-            type="password"
-            name="password"
-            value={form.password}
-            onChange={handleChange}
-            autoComplete="current-password"
-          />
-        </label>
+        <h2 className={styles.title}>Bienvenido a Patitas</h2>
 
-        {error && <p className={styles.error}>{error}</p>}
+        <p className={styles.subtitle}>
+          Por favor, inicie sesión para acceder a su portal de gestión de
+          mascotas.
+        </p>
 
-        <button className={styles.button} type="submit" disabled={loading}>
-          {loading ? "Ingresando..." : "Ingresar"}
-        </button>
-      </form>
+        <form onSubmit={ingresar}>
+          <div className={styles.formGroup}>
+            <label>Correo Electrónico</label>
+            <input
+              type="email"
+              value={email}
+              placeholder=""
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
 
-      <p className={styles.hint}>
-        No tienes cuenta?{" "}
-        <Link className={styles.link} to="/registro">
-          Registrate
-        </Link>
-      </p>
-    </section>
+          <div className={styles.formGroup}>
+            <label>Contraseña</label>
+            <input
+              type="password"
+              value={password}
+              placeholder=""
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+
+          <button type="submit" className={styles.loginButton}>
+            Iniciar Sesión
+          </button>
+        </form>
+
+        <div className={styles.links}>
+          <Link to="/recuperar-password">¿Olvidó su contraseña?</Link>
+
+          <Link to="/registro">¿No tiene una cuenta? Regístrese</Link>
+        </div>
+      </div>
+    </div>
   );
 }
 

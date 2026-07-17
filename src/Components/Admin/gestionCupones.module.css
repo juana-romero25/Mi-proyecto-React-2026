@@ -1,0 +1,150 @@
+/* ==========================================================================
+   Contenedor Principal y Títulos
+   ========================================================================== */
+.container {
+  padding: 30px;
+  background-color: #D1D4F5; /* Lavanda claro: Fondo de la sección */
+  min-height: 100vh;
+  font-family: inherit;
+}
+
+.container h1 {
+  color: #6F6F76; /* Gris oscuro: Textos importantes */
+  font-size: 2rem;
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+.container h2 {
+  color: #6F6F76; /* Gris oscuro: Textos importantes */
+  font-size: 1.5rem;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+/* ==========================================================================
+   Botón de Volver al Panel (Estilo e Icono)
+   ========================================================================== */
+.backContainer {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #9D7452; /* Marrón suave: Detalles decorativos */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.backButton:hover {
+  color: #9DA3DD; /* Lavanda principal al pasar el cursor */
+  transform: translateX(-3px);
+}
+
+/* ==========================================================================
+   Formulario de Creación de Cupones
+   ========================================================================== */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+  background-color: #BDC2EF; /* Lavanda medio: Fondo del formulario */
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.form input {
+  padding: 12px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #FFFFFF; /* Blanco */
+  color: #6F6F76; /* Gris oscuro para el texto ingresado */
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form input::placeholder {
+  color: #A69CA7; /* Gris cálido: Marcador de posición */
+}
+
+.form input:focus {
+  border-color: #9DA3DD; /* Lavanda principal al hacer foco */
+  box-shadow: 0 0 0 3px rgba(157, 163, 221, 0.2);
+}
+
+/* Botón "Crear Cupón" (CTA) */
+.form button {
+  padding: 12px;
+  background-color: #ECA564; /* Naranja pastel: Elemento destacado */
+  color: #FFFFFF; /* Blanco para el texto del botón */
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.form button:hover {
+  background-color: #d9914f; /* Oscurece sutilmente el naranja pastel */
+}
+
+.form button:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================================================
+   Cards de Listado de Cupones Disponibles
+   ========================================================================== */
+.card {
+  margin-top: 15px;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #BDC2EF; /* Lavanda medio: Contenedor del cupón */
+  border: 1px solid #9DA3DD; /* Lavanda principal como borde suave */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 400px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.card p {
+  margin: 0;
+  color: #6F6F76; /* Gris oscuro para las etiquetas */
+  font-size: 1rem;
+}
+
+.card strong {
+  color: #9D7452; /* Marrón suave para destacar el código del cupón */
+  font-size: 1.1rem;
+  margin-left: 5px;
+}
+
+/* Botón "Eliminar" de las Cards */
+.card button {
+  margin-top: 12px;
+  padding: 8px 15px;
+  background-color: #8d95d6;
+  color: #6F6F76; /* Gris oscuro */
+  border: 1.5px solid #6F6F76;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  align-self: flex-start; /* Hace que el botón ocupe solo su contenido */
+}
+
+.card button:hover {
+  background-color: #6F6F76; /* Pasa a fondo gris oscuro */
+  color: #FFFFFF; /* Texto blanco */
+}
